@@ -1,8 +1,10 @@
+require("dotenv").config(); // Only needed for local development
+
 const request = require("request");
 
 const openWeatherApp = {
     BASE_URL: "https://api.openweathermap.org/data/2.5/weather?",
-    SECRET_KEY: "2b638741116ace51b12193c4ca592252",
+    SECRET_KEY: process.env.OPENWEATHER_API_KEY,
 };
 
 const WeatherData = (address, callback) => {
@@ -10,13 +12,12 @@ const WeatherData = (address, callback) => {
 
     console.log(url);
 
-    request({url, json: true}, (error, data) => {
-        if(error) {
-            callback(true, "unable to fetch data, please try again" + error);
+    request({ url, json: true }, (error, data) => {
+        if (error) {
+            callback(true, "Unable to fetch data, please try again. " + error);
         }
         callback(false, data?.body);
     });
-    
 };
 
 module.exports = WeatherData;

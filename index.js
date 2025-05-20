@@ -4,7 +4,7 @@ const path = require("path");
 const WeatherData = require("./routes/index"); 
 
 const app = express();
-const PORT = process.env.PORT || 5001;
+const PORT = process.env.PORT || 5002;
 
 const publicpath = path.join(__dirname, "public");
 const viewPath = path.join(__dirname, "templates/views");
